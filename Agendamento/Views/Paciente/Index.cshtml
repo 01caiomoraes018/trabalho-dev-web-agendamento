@@ -1,0 +1,32 @@
+@model List<Agendamento.Models.Paciente>
+@{ ViewData["Title"] = "Pacientes"; }
+<h1>Pacientes</h1>
+@if (TempData["Mensagem"] is string mensagem)
+{
+    <div class="alert alert-success" role="status">@mensagem</div>
+}
+<p><a asp-action="Inserir" class="btn btn-success">Inserir paciente</a></p>
+@if (Model.Count == 0)
+{
+    <p>Nenhum paciente cadastrado.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table align-middle table-striped table-hover">
+            <thead><tr><th>Nome</th><th>CPF</th><th>Telefone</th><th>Endereço</th><th>Nascimento</th><th>Ações</th></tr></thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>@p.Nome</td><td>@p.Cpf</td><td>@p.Telefone</td><td>@p.Endereco</td><td>@p.DataNascimento?.ToString("dd/MM/yyyy")</td>
+                        <td class="text-nowrap">
+                            <a asp-action="Editar" asp-route-id="@p.Id" class="btn btn-outline-info btn-sm">Editar</a>
+                            <a asp-action="Remover" asp-route-id="@p.Id" class="btn btn-outline-danger btn-sm">Remover</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

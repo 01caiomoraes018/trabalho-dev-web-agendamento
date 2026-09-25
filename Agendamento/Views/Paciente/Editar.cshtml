@@ -1,0 +1,12 @@
+@model Agendamento.Models.Paciente
+@{ ViewData["Title"] = "Editar paciente"; }
+<h1>Editar paciente</h1>
+<div class="row"><div class="col-md-6">
+    <form asp-action="Editar" asp-route-id="@Model.Id" method="post">
+        <input asp-for="Id" type="hidden" />
+        <partial name="_Campos" model="Model" />
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+    </form>
+</div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
